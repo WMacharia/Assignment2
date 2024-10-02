@@ -7,5 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $genderId = $_POST['genderId'];
     $roleId = $_POST['roleId'];
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 }
 ?>
