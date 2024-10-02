@@ -23,11 +23,15 @@
             </div>
             <div>
                 <label for="gender">Gender</label>
-                <select></select>
+                <select>
+
+                </select>
             </div>
             <div>
                 <label for="role">Role</label>
-                <select></select>
+                <select>
+                    
+                </select>
             </div>
             <button type="submit">Sign Up</button>
         </form>
