@@ -6,11 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $genderId = $_POST['genderId'];
-    $roleId = $_POST['roleId'];
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO userinfo (email, username, password, genderId, roleId) VALUES ('$email', '$username', '$hashed_password', '$genderId', '$roleId')";
+    $sql = "INSERT INTO userinfo (email, username, password, genderId) VALUES ('$email', '$username', '$hashed_password', '$genderId')";
 
     if ($conn->query($sql) === TRUE) {
         echo "USER REGISTERED SUCCESFULLY!"; 
