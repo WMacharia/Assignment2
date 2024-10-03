@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Form</title>   
-</head>
-<body>
-    <div>
+<?php
+class signupform{
+    public function sign_up_form(){    
+        require_once "load.php";
+            ?>
+        <div>
         <h2>Sign Up</h2>
-        <form method="" action="">
+        <form method="POST" action="signup.php">
             <div>
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Enter Email" required>
@@ -22,18 +19,18 @@
                 <input type="password" id="password" name="password" placeholder="Enter Password" required>
             </div>
             <div>
-                <label for="gender">Gender</label>
-                <select>
-
-                </select>
-            </div>
-            <div>
-                <label for="role">Role</label>
-                <select>
-                    
-                </select>
+                <label for="genderId">Gender</label><br>
+                <?php
+                    $sql = "SELECT genderId, gender FROM gender";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<input type='radio' name='genderId' value='{$row['genderId']}'> {$row['gender']}<br>";
+                    }
+                ?>
             </div>
             <button type="submit">Sign Up</button>
         </form>
     </div>
-</body>
+    <?php
+    }
+}
