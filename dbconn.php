@@ -25,7 +25,7 @@ class dbConnection{
                     $db_host .=":" . $db_port;
                 }
                 $this->connection = new mysqli($db_host, $db_user, $db_pass, $db_name);
-                if($this->connection->connection->connection_error){
+                if($this->connection->connect_error){
                     return "Connection failed" . $this->connection->connect_error;
                 }else{
                     print "Connected Successfully";
@@ -44,6 +44,14 @@ class dbConnection{
                     echo "Connection Failed " . $e->getMessage();
                  }
             break;
+        }
+    }
+    public function query($sql) {
+        switch ($this->db_type) {
+            case 'MySQLi':
+                return $this->connection->query($sql); // MySQLi query
+            case 'PDO':
+                return $this->connection->query($sql); // PDO query
         }
     }
 }
