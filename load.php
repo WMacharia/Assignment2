@@ -1,6 +1,11 @@
 <?php
-require "constants.php";
-require "dbconn.php";
+require "db/constants.php";
+require "db/dbconn.php";
+require "forms/signupform.php";
 
-$conn = new dbConnection(DBTYPE , HOSTNAME, DBPORT, HOSTUSER, HOSTPASS, DBNAME);
+$db = new dbConnection(DBTYPE , HOSTNAME, DBPORT, HOSTUSER, HOSTPASS, DBNAME);
+$conn = $db->connection;
+
+$objform = new signupform();
+
 ?>
