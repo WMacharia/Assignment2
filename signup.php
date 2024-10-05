@@ -1,5 +1,6 @@
 <?php
 require "load.php";
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -10,11 +11,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO userinfo (email, FullName, username, password) VALUES ('$email', '$fullname', '$username', '$hashed_password')";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
 
-    if ($conn->query($sql) === TRUE) {
-        echo "USER REGISTERED SUCCESFULLY!"; 
+    $_SESSION['email'] = $email;
+        $_SESSION['username'] = $username;
+
+    echo "<script>
+        alert('User Verified');
+        window.location.href = 'PHPMailer/mail.php';
+        </script>"; 
 }      
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-}
 ?>
