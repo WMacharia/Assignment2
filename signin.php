@@ -21,13 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $hashed_password_from_db = $row['password'];
 
-        if (password_verify($hashed_password, $hashed_password_from_db)) {
-            header("Location: index2.php");
+        if (password_verify($password, $hashed_password_from_db)) {
+            header("Location: signin.php");
+            exit;  // Important to call exit after header to stop further code execution
         } else {
-            header("Location: showusers.php");
+            header("Location: showusers.php");  // Optionally redirect to login with an error
+            exit;
         }
+        
     } else {
-        echo "Email not found.";
+        echo "User not found.";
+        header("Location: login.php?error=usernotfound");  // Error case
+        exit;
     }
 }
 ?>
